@@ -10,7 +10,7 @@ I had not prior practical experience actually working with machine learning or e
 ## The GPU-Problem
 Because I do not own any GPU other than an Intel UHD 620 (which is obviously useless for deep learning), I had to use cloud services. Since I did not want to pay for my experiments, I was somewhat limited in my options. There were two services I used:
 * Kaggle Kernels: These give you 30h of GPU-time per week. They can run up to 9h in one go and are nicely integrated into the Kaggle System. Unfortunately, 30h of GPU-time is very little for a deep learning problem, so I had to look for something else.
-* Google Colab: Google Colab is offered by Google for free. It allows the user to use spare GPU capacities for scientific computer. It does, however, have a few drawbacks: 
+* Google Colab: Google Colab is offered by Google for free. It allows the user to use spare GPU capacities for scientific computing. It does, however, have a few drawbacks: 
   + It disconnects if left idle for too long. This forces me to watch over it while it runs and makes overnight experiments impossible. 
   + It is a bit of a pain to set up because every time I open it I get the default VM and need to download the dataset as well as install the needed packages - it does not even come with TensorFlow 2 by default. 
   + I have to take precautions against losing my progress: If it suddenly disconnects (which is possible) I obviously do not want to lose all my progress on the current experiment. My solution to this was to connect it to Google Drive and create a backup in a Google Drive folder after every epoch. 
