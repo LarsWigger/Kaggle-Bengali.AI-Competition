@@ -1,7 +1,7 @@
 # OCR Kaggle Competition
 
 ## Competition Description
-The competition can be viewed at https://www.kaggle.com/c/bengaliai-cv19.
+The competition can be viewed [here](https://www.kaggle.com/c/bengaliai-cv19).
 The task was a multilabel classification problem: For every image, one of 168 Grapheme Roots, 11 Vowel Diacritics and 7 Consonant Diacritics had to be predicted. The training data consisted of 200840 137x236 grayscale images (given as arrays/dataframes of numberical pixel values divided among 4 .parquet files). The private validation data consisted of a similiar, if not identical, amount of images.
 
 ## Result
@@ -42,7 +42,7 @@ All of these limitations lead to the fact that the code is anything but well-str
 + In [version 7](https://www.kaggle.com/larswigger/bengali-training?scriptVersionId=28793209) of my TensorFlow training Kernel I copied the MultiOutputDataGenerator mentioned beforehand to my experiment. It was a custom class because Keras did not include anything for multilabel augmentation. With some basic rotation, zooming and shifting, the public leaderboard score jumped to 95.39%.
 + In [version 11](https://www.kaggle.com/larswigger/bengali-training?scriptVersionId=28859297) I tried to traing the model only on the Grapheme Root data. I hoped that this would allow the model to focus on the Grapheme Root without distractions. The results was that it performed significantly worse in every single regard. One model was definitely the way to go.
 + In [version 17](https://www.kaggle.com/larswigger/bengali-training?scriptVersionId=29049731) I managed to try out several new things. It took me several attempts to get this working. In the end however, it just scored a mere 94.81% after 25 epochs. I made these changes:
-  + I switched to a new height of 128x128. Because this multiplied my memory need by 4, the VM crashed. Because I could not find out how to do this with keras, I created a python generator that loaded data from several files rather than one and kept only one file in memory at once. To speed it up, I used the @background decorator (not a default package). It was much slower than beforem, but at least it worked.
+  + I switched to a new height of 128x128. Because this multiplied my memory need by 4, the VM crashed. Because I could not find out how to do this with Keras, I created a python generator that loaded data from several files rather than one and kept only one file in memory at once. To speed it up, I used the @background decorator (not a default package). It was much slower than before, but at least it worked.
   + I used ResNet50 as a base for the model.
   + I copied the GridMask augmentation and applied it to the model
 
@@ -52,4 +52,9 @@ All of these limitations lead to the fact that the code is anything but well-str
   + I could easily control any aspect of the training loop. This also had the downside that I had to manually implement all of my metric tracking which TensorFlow gave me by default.
   
 + My first, mostly experimental, submission scored 95.28% (after debugging)
-+ I read in a post that the author got better results by plain resize compared to centering the Grapheme first as I had done. I tried it out and got clearly better results.
++ I added CutMix and MixUp. The results immadiately got better and I tried it with both ResNet50(96.4%) and ResNet101(96.52%, one of the final submission, available [here](https://www.kaggle.com/larswigger/pytorch-bengali-submission?scriptVersionId=29326570)).
++ At this point, I switched my experiments to Google Colab, so it got a bit chaotic. You can see an example of the training structure I used in Colab here
++ I read in a post that the author got better results by plain resize compared to centering the Grapheme first as I had done. I tried it out and got clearly better results during the first 30 epochs. I decided to stop using my sophisticated preprocessing during the following experiments.
++ I tried using EfficientNetB3, SEResNet50 and DenseNet121. All of them performed worse than a simple ResNet50 and took longer to train.
++ I put the head directly on top of the model rather than using the Dropout and Dense Layers I used beforehand. The results were clearly better during training compared to using my intermediate layers.
++ Surprisingly, none of these improvements in my experiments led to a notable improvement on the public leaderboard - most were actually worse. So ultimately I just chose a ResNet50 version without my sophisticated preprocessing (scored 96.46% on the public leaderboard) as my second submission (I was allowed to select two for evaluation).
