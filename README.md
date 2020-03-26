@@ -47,13 +47,14 @@ All of these limitations lead to the fact that the code is anything but well-str
   + I copied the GridMask augmentation and applied it to the model
 
 + I got extremely annoyed by TensorFlow during my previous experiments. It was nice whenever I wanted to something that was supposed to be done with the API and a royal pain whenever I wanted to do something that was not supposed to be done with the API. Additionally, the forums said that CutMix and MixUp were extremely useful for this competition, but they were simply not available for Keras. Everyone seemed to be using PyTorch. So I decied to switch my complete environment over in the middle of the competition. I used [Abishek Thakurs video series](https://www.youtube.com/watch?v=8J5Q4mEzRtY&list=PL98nY_tJQXZntH5WUtKB0bghZeKVIJHJc) as a starting point for the competition. After a lot of work, the [new environment](https://www.kaggle.com/larswigger/pytorch-bengali-training?scriptVersionId=29175628) had the following advantages:
+  + I used stratified folds for splitting the data rather than a simple shuffle as I had before.
   + I used a PyTorch dataloader to load my data. It was significantly faster than the makeshift TensorFlow version I used beforehand. Because I found out about the numpy.memmap() function I had minimal memory usage (such a relieve compared to before) and it was a lot more flexible.
   + I could use the actual competition metric to evaluate my experiments compared to just standard accuracy with Keras.
   + I could easily control any aspect of the training loop. This also had the downside that I had to manually implement all of my metric tracking which TensorFlow gave me by default.
   
 + My first, mostly experimental, submission scored 95.28% (after debugging)
 + I added CutMix and MixUp. The results immadiately got better and I tried it with both ResNet50(96.4%) and ResNet101(96.52%, one of the final submission, available [here](https://www.kaggle.com/larswigger/pytorch-bengali-submission?scriptVersionId=29326570)).
-+ At this point, I switched my experiments to Google Colab, so it got a bit chaotic. You can see an example of the training structure I used in Colab here
++ At this point, I switched my experiments to Google Colab, so it got a bit chaotic. You can see an example of the training structure I used in Colab [here](https://github.com/LarsWigger/Kaggle_Bengali-AI_Competition/blob/master/Notebooks/Minimal_Bengali_Training.ipynb).
 + I read in a post that the author got better results by plain resize compared to centering the Grapheme first as I had done. I tried it out and got clearly better results during the first 30 epochs. I decided to stop using my sophisticated preprocessing during the following experiments.
 + I tried using EfficientNetB3, SEResNet50 and DenseNet121. All of them performed worse than a simple ResNet50 and took longer to train.
 + I put the head directly on top of the model rather than using the Dropout and Dense Layers I used beforehand. The results were clearly better during training compared to using my intermediate layers.
