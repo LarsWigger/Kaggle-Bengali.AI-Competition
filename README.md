@@ -8,7 +8,7 @@ The task was a multilabel classification problem: For every image, one of 168 Gr
 I scored 92.71% on the private leaderboard, making me 312 out of 2059 or top 16%. You can validate this on [my Kaggle profile](https://www.kaggle.com/larswigger/competitions).
 
 ## Experience Level
-I had not prior practical experience actually working with machine learning or even deep learning. Everything I learned (which was a lot), I learned along the way. I did, however, have a reasonable understanding of how it worked in theory before trying my hand on it.
+I had no prior practical experience actually working with machine learning or even deep learning. Everything I learned (which was a lot), I learned along the way. I did, however, have a reasonable understanding of how it worked in theory before trying my hand on it.
 
 ## The GPU-Problem
 Because I do not own any GPU other than an Intel UHD 620 (which is obviously useless for deep learning), I had to use cloud services. Since I did not want to pay for my experiments, I was somewhat limited in my options. There were two services I used:
