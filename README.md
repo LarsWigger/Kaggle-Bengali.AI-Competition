@@ -2,7 +2,7 @@
 
 ## Competition Description
 The competition can be viewed [here](https://www.kaggle.com/c/bengaliai-cv19).
-The task was a multilabel classification problem: For every image, one of 168 Grapheme Roots, 11 Vowel Diacritics and 7 Consonant Diacritics had to be predicted. The training data consisted of 200840 137x236 grayscale images (given as arrays/dataframes of numerical pixel values divided among four .parquet files). The private validation data consisted of a similar, possibly identical, amount of images.
+The task was a multilabel classification problem: For every image, one of 168 Grapheme Roots, 11 Vowel Diacritics and 7 Consonant Diacritics had to be predicted. The training data consisted of 200840 137x236 grayscale images (given as arrays/dataframes of numerical pixel values divided among four .parquet files). The private validation data consisted of a similar, possibly identical, number of images.
 
 ## Result
 I scored 92.71% on the private leaderboard, making me 312 out of 2059 or top 16%. You can validate this on [my Kaggle profile](https://www.kaggle.com/larswigger/competitions).
